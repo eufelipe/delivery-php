@@ -1,0 +1,137 @@
+FORMAT: 1A
+HOST: http://localhost
+
+
+# API DELIVERY APP
+
+API da aplicação **Delivery App** versão mais simples possível de um sistema de entregas de mercadorias a
+clientes. Ele vai possuir um cadastro de entrega, visualização de entregas cadastradas e
+o percurso no mapa.
+
+# Group API
+
+## Sobre a API [/]
+
+### Versão da API [GET]
+
+Nesse endpoint é possível verificar a versão e o heath da api
+
++ Response 200 (application/json)
+    + Attributes (Version)
+
+# Group Deliveries
+
+## Delivery [/deliveries]
+
+### Listar todas as entregas [GET]
+
++ Response 200 (application/json)
+    + Attributes (array[Delivery])
+
++ Response 404 (application/json)
+    + Attributes (Error)
+
+
+### Create entrega [POST]
+
++ Request para criar uma nova delivery
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+    + Attributes (DeliveryCreate)
+
++ Response 201 (application/json)
+    + Attributes (Delivery)
+
+
+## Delivery/{id} [/deliveries/{id}]
+
++ Parameters
+    + id: 1 (number, required)
+
+### Show entrega [GET]
+
++ Request para Update de uma entrega
+
+    + Parameters
+        + id: 1 (number, required)
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
+
++ Response 200 (application/json)
+    + Attributes (array[Delivery])
+
++ Response 404 (application/json)
+    + Attributes (Error)
+
+
+### Update entrega [PUT]
+
++ Request para Update de uma entrega
+
+    + Parameters
+        + id: 1 (number, required)
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
++ Attributes (Delivery)
+
++ Response 200 (application/json)
+    + Attributes (Delivery)
+
++ Response 404 (application/json)
+    + Attributes (Error)
+
+
+### Delete entrega [DELETE]
+
++ Request para Deletar de uma entrega
+
+    + Parameters
+        + id: 1 (number, required)
+
+    + Headers
+
+            Accept: application/json
+            Content-Type: application/json
+
++ Response 204 (application/json)
+
++ Response 404 (application/json)
+    + Attributes (Error)
+
+
+
+# Data Structures
+
+## Version (object)
++ app_name: `Delivery App` (string)
++ app_version: 1.0.0 (string)
+
+## Delivery (object)
++ id: 1 (number)
++ client: João das couves (string, required)
++ delivery_date: `2020-01-01 20:30:00` (string, required)
++ target_start: Av. Claudio Besserman Vianna, 3 (string, required)
++ target_end: Av Governador Amaral Peixoto (string, required)
+
+## DeliveryCreate (object)
++ client: João das couves (string, required)
++ delivery_date: `2020-01-01 20:30:00` (string, required)
++ target_start: Av. Claudio Besserman Vianna, 3 (string, required)
++ target_end: Av Governador Amaral Peixoto (string, required)
+
+
+## Error (object)
++ error: `any-error-code-1234` (string) - Error ou código do erro
++ message: ocorreu um erro desconhecido (string) - Descrição do erro

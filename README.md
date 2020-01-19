@@ -41,7 +41,7 @@ Utilize a API do Google Maps para mostrar o seguinte nesse mapa:
 
 ---
 
-## Rodar o projeto usando Artisan:
+## Rodar o projeto usando Artisan
 
 ```php artisan serve```
 
