@@ -5,6 +5,10 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
+use App\Constants\Constants;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,6 +50,28 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
+        if ($exception instanceof ModelNotFoundException) {
+            $description = trans('models.exception.not.found.description');
+            $message = trans('models.exception.not.found.message');
+            $status = Constants::NO_CONTENT_REQUEST;
+            return $this->render_response($description, $message, $status);
+        }
+
         return parent::render($request, $exception);
     }
+
+        /**
+     * Helper para renderizar response error
+     */
+    private function render_response($description, $message = null, $status = null)
+    {
+
+        $response = [
+            "error" => $message,
+            "message" => $description
+        ];
+        return response()->json($response, $status);
+    }
+
 }

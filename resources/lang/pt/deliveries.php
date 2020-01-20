@@ -2,6 +2,7 @@
 
 return [
 
+    'validator.message' => 'Ocorreu um erro no resource deliveries',
 
     'validator.client.required' => 'O nome do cliente é obrigatório',
     'validator.client.min' => 'o nome do cliente precisa ter pelo menos 3 caracteres',
