@@ -7,6 +7,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 use App\Constants\Constants;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 
 class Handler extends ExceptionHandler
@@ -55,6 +56,13 @@ class Handler extends ExceptionHandler
             $description = trans('models.exception.not.found.description');
             $message = trans('models.exception.not.found.message');
             $status = Constants::NO_CONTENT_REQUEST;
+            return $this->render_response($description, $message, $status);
+        }
+
+        if($exception instanceof MethodNotAllowedHttpException) {
+            $description = trans('models.exception.method.notallowed.http.exception.description');
+            $message = trans('models.exception.method.notallowed.http.exception.message');
+            $status = Constants::METHOD_NOT_ALLOWED;
             return $this->render_response($description, $message, $status);
         }
 

@@ -44,4 +44,19 @@ class DeliveriesController extends Controller
         return new DeliveryResource($delivery);
     }
 
+    /**
+     * Método para atualizar um delivery.
+     *
+     * @param \App\Http\Requests\DeliveriesRequest
+     * @param int $id
+     * @return \App\Http\Resources\DeliveryResource
+     */
+    public function update(DeliveriesRequest $request, int $id)
+    {
+        $data = $request->all();
+        $tool = $this->deliveryRepository->update($data, $id);
+
+        return new DeliveryResource($tool);
+    }
+
 }
