@@ -28,6 +28,7 @@
         "@material-ui/lab": "^4.0.0-alpha.39",
         "date-fns": "^2.9.0",
         "formik": "^2.1.2",
+        "react-google-maps": "^9.4.5",
         "react-router-dom": "^5.1.2",
         "yup": "^0.28.0"
     }

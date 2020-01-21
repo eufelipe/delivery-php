@@ -23,7 +23,8 @@ const useStyles = makeStyles({
     padding: '0 30px',
   },
   title: {
-      color: 'white'
+      color: 'white',
+      textDecoration: 'none'
   }
 });
 
