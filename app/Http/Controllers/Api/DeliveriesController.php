@@ -55,6 +55,15 @@ class DeliveriesController extends Controller
         return $deliveries;
     }
 
+
+    /**
+     * Funcionalidade para retornar uma delivery
+     */
+    public function show(int $id) {
+        $delivery = $this->deliveryRepository->find($id);
+        return new DeliveryResource($delivery);
+    }
+
     /**
      * Funcionalidade para criar um novo delivery.
      *
