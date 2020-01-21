@@ -4,7 +4,7 @@ namespace App\Constants;
 
 class Constants
 {
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.1';
 
     const DELIVERIES_CACHE_KEY = 'api::deliveries';
 
