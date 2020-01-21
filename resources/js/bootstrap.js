@@ -1,5 +1,9 @@
 window._ = require('lodash');
 
+require('@material-ui/core');
+require('@material-ui/lab');
+require('@material-ui/icons');
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
