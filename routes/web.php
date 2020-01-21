@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return [
+        'app_name' => env('APP_NAME'),
+        'app_version' => App\Constants\Constants::VERSION,
+    ];
 });
