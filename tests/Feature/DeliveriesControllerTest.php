@@ -43,6 +43,36 @@ class DeliveriesControllerTest extends TestCase
 
 
     /**
+     * Testa se é possivel ver um delivery especifico.
+     */
+
+     public function test_if_is_can_show_an_delivery_record_by_id()
+     {
+        $data =[
+            "client" => "João das Couves",
+            "delivery_date" => '2020-02-10 10:00:00',
+            "target_start" => "Av. Claudio Besserman Vianna, 3",
+            "target_end" => "Av Governador Amaral Peixoto, 4",
+        ];
+
+        $delivery = Delivery::create($data);
+
+        $uri = route('api.deliveries.show', ["delivery" => $delivery]);
+        $this->json('GET', $uri)
+            ->assertStatus(200)
+            ->assertSee('client')
+            ->assertSee('delivery_date')
+            ->assertSee('target_start')
+            ->assertSee('target_end')
+            ->assertSee('Couves')
+            ;
+
+        $uri = route('api.deliveries.show', ["delivery" => -1]);
+        $this->json('GET', $uri)
+            ->assertStatus(404);
+     }
+
+    /**
      * Testa se é possivel criar uma nova delivery.
      *
      * @return void
