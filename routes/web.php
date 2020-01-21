@@ -11,6 +11,8 @@
 |
 */
 
+Route::view('/{path?}', 'app');
+
 Route::get('/', function () {
     return [
         'app_name' => env('APP_NAME'),
