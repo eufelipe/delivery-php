@@ -1,13 +1,18 @@
-import axios from 'axios'
-import React, { Component } from 'react'
+import axios from 'axios';
+import React, { Component } from 'react';
 
-import Grid from '@material-ui/core/Grid';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {
+    Grid,
+    CssBaseline,
+    Typography,
+    CircularProgress,
+    Link,
+    Breadcrumbs
 
-import {formatDate} from '../utils/Date'
 
+} from '@material-ui/core';
+
+import {formatDate} from '../utils/Date';
 
 const styles = {
     container: {
@@ -43,25 +48,33 @@ class Delivery extends Component {
         }
 
           return (
-            <Grid container component="main" styles={styles.container}>
-                <CssBaseline />
-                <Grid item xs={12} sm={12} md={12} elevation={6} >
+              <>
+               <CssBaseline />
+                <Breadcrumbs aria-label="breadcrumb">
+                    <Link color="inherit" href="/">
+                        Página Inícial
+                    </Link>
+                    <Typography color="textPrimary">Entrega</Typography>
+                </Breadcrumbs>
 
-                    <Typography variant="h2" color="inherit" noWrap>
-                     {delivery.client}
-                    </Typography>
-                    <hr />
+                <Grid container component="main" styles={styles.container}>
+                    <Grid item xs={12} sm={12} md={12} elevation={6} >
+                        <Typography variant="h2" color="inherit" noWrap>
+                        {delivery.client}
+                        </Typography>
+                        <hr />
 
-                    <Typography variant="h6" color="inherit" noWrap>
-                     Data da entrega: {formatDate(delivery.delivery_date)}
-                    </Typography>
+                        <Typography variant="h6" color="inherit" noWrap>
+                        Data da entrega: {formatDate(delivery.delivery_date)}
+                        </Typography>
 
-                    <Typography color="inherit" noWrap>
-                     Origem: <strong>{delivery.target_start}</strong> -    Destino: <strong>{delivery.target_end}</strong>
-                    </Typography>
+                        <Typography color="inherit" noWrap>
+                        Origem: <strong>{delivery.target_start}</strong> -    Destino: <strong>{delivery.target_end}</strong>
+                        </Typography>
 
+                    </Grid>
                 </Grid>
-            </Grid>
+            </>
           )
       }
 }

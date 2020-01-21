@@ -1,46 +1,54 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 
-import Button from '@material-ui/core/Button';
+import {
+    Button,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    CircularProgress,
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+} from '@material-ui/core';
 
 import Title from '../components/Title';
+import {formatDate} from '../utils/Date'
 
 class DeliveriesList extends Component {
       constructor () {
         super()
         this.state = {
-          deliveries: []
+          deliveries: [],
+          isLoading: false,
         }
       }
 
       componentDidMount () {
+        this.setState({isLoading: true})
         axios.get('/api/deliveries').then(response => {
           this.setState({
-            deliveries: response.data
+            deliveries: response.data,
+             isLoading: false
           })
         })
       }
 
       render () {
-        const { deliveries } = this.state
+        const { deliveries = [], isLoading = false } = this.state
+
+        if(isLoading) {
+            return <CircularProgress />
+        }
 
           return (
                <div>
-
-                           <Button
-                                style={{ marginBottom: 30}}
-                                    variant="contained"
-                                    color="primary"
-                                    href={'/create'}>
+                    <Button style={{ marginBottom: 30}}
+                            variant="contained"
+                            color="primary"
+                            href={'/create'}>
                                 Adicionar Nova Entrega
-                                </Button>
-
+                    </Button>
 
                     <Title>Entregas</Title>
                     <Table size="small">
@@ -59,18 +67,16 @@ class DeliveriesList extends Component {
                             <TableRow key={row.id}>
                                 <TableCell>{row.id}</TableCell>
                                 <TableCell>{row.client}</TableCell>
-                                <TableCell>{row.delivery_date}</TableCell>
+                                <TableCell>{formatDate(row.delivery_date)}</TableCell>
                                 <TableCell>{row.target_start}</TableCell>
                                 <TableCell>{row.target_end}</TableCell>
                                 <TableCell>
-
                                 <Button
                                     variant="contained"
                                     color="primary"
                                     href={`/${row.id}`}>
-                                Visualizar
+                                        Visualizar
                                 </Button>
-
                                 </TableCell>
                             </TableRow>
                         ))}
