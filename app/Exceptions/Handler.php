@@ -8,7 +8,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use App\Constants\Constants;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -52,24 +52,26 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
 
-        if ($exception instanceof ModelNotFoundException) {
+        if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException) {
             $description = trans('models.exception.not.found.description');
             $message = trans('models.exception.not.found.message');
-            $status = Constants::NO_CONTENT_REQUEST;
+            $status = Constants::NOT_FOUND;
             return $this->render_response($description, $message, $status);
         }
 
-        if($exception instanceof MethodNotAllowedHttpException) {
+
+        if ($exception instanceof MethodNotAllowedHttpException) {
             $description = trans('models.exception.method.notallowed.http.exception.description');
             $message = trans('models.exception.method.notallowed.http.exception.message');
             $status = Constants::METHOD_NOT_ALLOWED;
             return $this->render_response($description, $message, $status);
         }
 
+
         return parent::render($request, $exception);
     }
 
-        /**
+    /**
      * Helper para renderizar response error
      */
     private function render_response($description, $message = null, $status = null)
@@ -81,5 +83,4 @@ class Handler extends ExceptionHandler
         ];
         return response()->json($response, $status);
     }
-
 }

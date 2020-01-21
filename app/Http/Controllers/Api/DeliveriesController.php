@@ -59,4 +59,16 @@ class DeliveriesController extends Controller
         return new DeliveryResource($tool);
     }
 
+
+    /**
+     * Método para deletar um delivery
+     *
+     * @param int $id
+     *
+     */
+    public function destroy(int $id)
+    {
+        $this->deliveryRepository->delete($id);
+        return response()->noContent();
+    }
 }

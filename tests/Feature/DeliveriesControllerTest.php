@@ -223,4 +223,37 @@ class DeliveriesControllerTest extends TestCase
 
 
 
+    /**
+     * Testa se é possivel deletar um delivery.
+     */
+    public function test_if_can_delete_a_delivery()
+    {
+        $data =[
+            "client" => "João das Couves",
+            "delivery_date" => '2020-02-10 10:00:00',
+            "target_start" => "Av. Claudio Besserman Vianna, 3",
+            "target_end" => "Av Governador Amaral Peixoto, 4",
+        ];
+
+        $delivery = Delivery::create($data);
+
+        $uri = route('api.deliveries.destroy', ['delivery' => $delivery]);
+
+        $this->json('DELETE', $uri)
+            ->assertStatus(204);
+    }
+
+    /**
+     * Testa se ocorre erro ao deletar um delivery que nao existe.
+     */
+    public function test_if_delete_not_found_a_delivery()
+    {
+        $delivery = new Delivery();
+        $delivery->id = -1;
+
+        $uri = route('api.deliveries.destroy', ['delivery' => $delivery]);
+        $this->json('DELETE', $uri)
+            ->assertStatus(404);
+    }
+
 }
