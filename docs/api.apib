@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://localhost
+HOST: http://localhost:8000
 
 
 # API DELIVERY APP
@@ -21,7 +21,7 @@ Nesse endpoint é possível verificar a versão e o heath da api
 
 # Group Deliveries
 
-## Delivery [/deliveries]
+## Delivery [/api/deliveries]
 
 ### Listar todas as entregas [GET]
 
@@ -46,8 +46,11 @@ Nesse endpoint é possível verificar a versão e o heath da api
 + Response 201 (application/json)
     + Attributes (Delivery)
 
++ Response 422 (application/json)
+    + Attributes (Error)
 
-## Delivery/{id} [/deliveries/{id}]
+
+## Delivery/{id} [/api/deliveries/{id}]
 
 + Parameters
     + id: 1 (number, required)

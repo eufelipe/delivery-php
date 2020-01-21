@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Delivery;
+use App\Observers\DeliveryObserver;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Resources\Json\Resource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Resource::withoutWrapping();
+        Delivery::observe(DeliveryObserver::class);
     }
 }
