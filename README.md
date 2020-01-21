@@ -37,7 +37,7 @@ Utilize a API do Google Maps para mostrar o seguinte nesse mapa:
 
 ## Version
 
-```1.2.0```
+```1.2.1```
 
 ---
 
