@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Container from '@material-ui/core/Container'
 
 import Header from './Header'
-import DeliveriesList from './DeliveriesList'
+import DeliveriesList from '../pages/DeliveriesList'
+import Delivery from '../pages/Delivery'
 
 const classes = {
   content: {
@@ -29,6 +30,7 @@ class App extends Component {
                 <Container maxWidth="lg" style={classes.container}>
                     <Switch>
                         <Route exact path='/' component={DeliveriesList} />
+                        <Route path='/:id' component={Delivery} />
                     </Switch>
                 </Container>
                </main>
