@@ -32,6 +32,16 @@ class DeliveriesList extends Component {
 
           return (
                <div>
+
+                           <Button
+                                style={{ marginBottom: 30}}
+                                    variant="contained"
+                                    color="primary"
+                                    href={'/create'}>
+                                Adicionar Nova Entrega
+                                </Button>
+
+
                     <Title>Entregas</Title>
                     <Table size="small">
                         <TableHead>

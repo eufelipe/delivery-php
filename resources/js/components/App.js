@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container'
 import Header from './Header'
 import DeliveriesList from '../pages/DeliveriesList'
 import Delivery from '../pages/Delivery'
+import CreateDelivery from '../pages/CreateDelivery'
 
 const classes = {
   content: {
@@ -30,6 +31,7 @@ class App extends Component {
                 <Container maxWidth="lg" style={classes.container}>
                     <Switch>
                         <Route exact path='/' component={DeliveriesList} />
+                        <Route path='/create' component={CreateDelivery} />
                         <Route path='/:id' component={Delivery} />
                     </Switch>
                 </Container>
